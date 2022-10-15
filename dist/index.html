@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+</head>
+<body>
+    <header>
+        <div class="intro-header">
+            <p>ToDo List</p>
+        </div>
+    </header>
+
+    <!--Side Bar Menu-->
+    <nav id="sidebar-menu">
+        
+        <!--Taks Menu Links-->
+        <div class="menu-links">
+            <a href="#" class="link menu-link select selected-link" data-link-index="0" data-link-title="all">
+                <p class="menu-link-text select" data-link-index="0" data-link-title="all">All</p>
+            </a>
+            <a href="#" class="link menu-link select" data-link-index="1" data-link-title="today">
+                <p class="menu-link-text select" data-link-index="1" data-link-title="today">Today</p>
+            </a>
+            <a href="#" class="link menu-link select" data-link-index="2" data-link-title="week">
+                <p class="menu-link-text select" data-link-index="2" data-link-title="week">Week</p>
+            </a>
+            <a href="#" class="link menu-link select" data-link-index="3" data-link-title="important">
+                <p class="menu-link-text select" data-link-index="3" data-link-title="important">Important</p>
+            </a>
+            <a href="#" class="link menu-link select" data-link-index="4" data-link-title="completed">
+                <p class="menu-link-text select" data-link-index="4" data-link-title="completed">Completed</p>
+            </a>
+        </div>
+
+         <!--Projects Navigation-->
+        <div class="nav-projects">
+            <div class="nav-projects-title">
+                <p>Projects (<span class="projects-count"></span>)</p>
+                <i class="fal fa-plus-circle add-project hover-element tooltip-icon">
+                    <span class="add-project tooltip-text">Create New Project</span>
+                </i>
+            </div>
+            <div class="projects-links-div">
+                <!-- <a href="#" class="link project-link project select" data-link-index="0">
+                    <div class="project-text-div project select" data-link-index="0">
+                        <p class="project-text project select" data-link-index="0">Create New Project</p>
+                    </div>
+                    <div class="project-icons-div project select" data-link-index="0">
+                        <i class="fal fa-edit project project-icon edit-project select"></i>
+                        <i class="fal fa-trash project project-icon delete-project select"></i>
+                    </div>
+                </a> -->
+            </div>
+        </div>
+    </nav>
+
+     <!--Main Content-->
+    <main>
+
+        <!--Title of Project or Menu-->
+        <div class="main-title-div">
+            <!-- <i class="main-title-icon"></i> -->
+            <h1 class="main-title-text"></h1>
+        </div>
+
+        <!--Tasks to do-->
+        <div class="tasks-div">
+
+            <!--Title that just says tasks number-->
+            <div class="tasks-title-div">
+                <div class="tasks-title">
+                    <p> Tasks (<span class="tasks-count"></span>)</p>
+                </div>
+                <i class="fal fa-plus-circle add-task task-icon hover-element tooltip-icon hide">
+                    <span class="add-task tooltip-text">Add New Task</span>
+                </i>
+            </div>
+
+            <!--Tasks list-->
+            <div class="tasks-list">
+
+            </div>
+        </div>
+    </main>
+
+    <!--Modal-->
+    <div id="modal" class="close hide">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h2 class="modal-main-title"></h2>
+                <i class="fal fa-times close-modal close"></i>
+            </div>
+
+            <div class="modal-content">
+
+                <!-- PROJECT DELETION -->
+                <p class="project-deletion-text hide">Are you sure?<br><br>
+                Project <span class="project-deletion-title"></span> is the one you want to delete?</p>
+
+                <!-- TASK DELETION -->
+                <p class="task-deletion-text hide">Are you sure?<br><br>
+                Task <span class="task-deletion-title"></span> is the one you want to delete?</p>
+
+                <!-- TASK INFO CONTENT -->
+                <div class="info-div hide">
+
+                    <!-- TITLE -->
+                    <div class="task-title-div">
+                        <p class="info-title padding-right">Title:</p>
+                        <p class="info-task-title"></p>
+                    </div>
+
+                    <!-- DESCRIPTION -->
+                    <div class="task-description-div">
+                        <p class="info-description padding-right">Description:</p>
+                        <p class="info-task-description"></p>
+                    </div>
+
+                    <!-- DUE DATE -->
+                    <div class="task-due-date-div">
+                        <p class="info-due-date padding-right">Due date:</p>
+                        <p class="info-task-due-date"></p>
+                    </div>
+
+                    <!-- PRIORITY -->
+                    <div class="task-priority-div">
+                        <p class="info-priority padding-right">Priority:</p>
+                        <p class="info-task-priority"></p>
+                    </div>
+
+                    <!-- PROJECT -->
+                    <div class="task-project-div">
+                        <p class="info-project padding-right">Project:</p>
+                        <p class="info-task-project"></p>
+                    </div>
+
+                </div>
+
+                <form id="form" name="form" method="POST">
+
+                    <!-- MODAL TITLE INPUT -->
+                    <div>
+                        <label id="modal-title-label" for="modal-title">Title<span class="title-star">*</span></label>
+                        <input type="text" id="modal-title" name="modal-title" autocomplete="off">
+                        <p class="modal-title-error hide">Please fill out this field.</p>
+                    </div>
+
+                    <!-- RADIO BUTTONS -->
+                    <div class="radio-form show">
+                        <p>Icon</p>
+                        <div class="project-icons">
+                            <label class="radio-before">
+                                <span class="radio-input">
+                                    <input type="radio" id="flower-daffodil" class="icon" name="projectFormIcon" value="fa-flower-daffodil" checked>
+                                    <span class="radio-control"><i class="fal fa-flower-daffodil fa-fw"></i></span>
+                                </span>
+                            </label>
+                            <label class="radio-before">
+                                <span class="radio-input">
+                                    <input type="radio" id="book" class="icon" name="projectFormIcon" value="fa-book">
+                                    <span class="radio-control"><i class="fal fa-book fa-fw"></i></span>
+                                </span>
+                            </label>
+                            <label class="radio-before">
+                                <span class="radio-input">
+                                    <input type="radio" id="tools" class="icon" name="projectFormIcon" value="fa-tools">
+                                    <span class="radio-control"><i class="fal fa-tools fa-fw"></i></span>
+                                </span>
+                            </label>
+                            <label class="radio-before">
+                                <span class="radio-input">
+                                    <input type="radio" id="volleyball-ball" class="icon" name="projectFormIcon" value="fa-volleyball-ball">
+                                    <span class="radio-control"><i class="fal fa-volleyball-ball fa-fw"></i></span>
+                                </span>
+                            </label>
+                            <label class=" radio radio-before">
+                                <span class="radio-input">
+                                    <input type="radio" id="sack-dollar" class="icon" name="projectFormIcon" value="fa-sack-dollar">
+                                    <span class="radio-control"><i class="fal fa-sack-dollar fa-fw"></i></span>
+                                </span>
+                            </label>
+                            <label class="radio radio-before">
+                                <span class="radio-input">
+                                    <input type="radio" id="pizza-slice" class="icon" name="projectFormIcon" value="fa-pizza-slice">
+                                    <span class="radio-control"><i class="fal fa-pizza-slice fa-fw"></i></span>
+                                </span>
+                            </label>
+                            <label class="radio-before">
+                                <span class="radio-input">
+                                    <input type="radio" id="backpack" class="icon" name="projectFormIcon" value="fa-backpack">
+                                    <span class="radio-control"><i class="fal fa-backpack fa-fw"></i></span>
+                                </span>
+                            </label>
+                            <label class="radio-before">
+                                <span class="radio-input">
+                                    <input type="radio" id="gift" class="icon" name="projectFormIcon" value="fa-gift">
+                                    <span class="radio-control"><i class="fal fa-gift fa-fw"></i></span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- MODAL CONTENT FOR A TASK -->
+                    <div class="modal-tasks-div hide">
+
+                        <!-- TASK DESCRIPTION -->
+                        <div class="task-description-area">
+                            <label for="task-description">Description</label>
+                            <textarea class="task-description" rows="3" cols="36"></textarea>
+                        </div>
+
+                        <!-- TASK DUE DATE -->
+                        <div class="task-due-date">
+                            <label for="dueDate">Due Date</label>
+                            <input type="date" id="dueDate" name="dueDate">
+                        </div>
+
+                        <!-- TASK PRIORITY -->
+                        <div>
+                            <label for="priority">Priority</label>
+                                <select class="task-priority" name="priority">
+                                    <option value="" disabled selected>How important is this task?</option>
+                                    <option value="low">Low Priority</option>
+                                    <option value="medium">Medium Priority</option>
+                                    <option value="high">High Priority</option>
+                                </select>
+                        </div>
+
+                    </div>
+                </form>
+
+                <!-- MODAL BUTTONS -->
+                <div class="modal-buttons">
+                    <button type="button" class="cancel-modal close">Cancel</button>
+                    <button type="button" class="modal-task-button confirm-modal"></button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-section">
+            <p>Designed by Falteringsky</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
