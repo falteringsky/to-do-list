@@ -9,6 +9,10 @@ button {
     padding: 8px 2px;
 }
 
+.hide {
+    display: none;
+}
+
 .padding-right {
     padding-right: 7px;
 }
@@ -26,12 +30,16 @@ button {
     color: green;
 }
 
-  .mid-priority {
+.mid-priority {
     color: yellow;
 }
 
-  .high-priority {
+.high-priority {
     color: red;
+}
+
+.flex {
+
 }
 
 header {
@@ -42,9 +50,64 @@ header {
     color: black;
 }
 
+.toggle-btn {
+    display: none;
+    height: 30px;
+    width: 30px;
+    margin-left: 22px;
+    padding: 9px 5px 4px 5px;
+    color: black;
+    background-color: white;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.three-line {
+    height: 2px;
+    margin-bottom: 3px;
+    background: black;
+    transition: all .4s ease;
+}
+  
+.toggle-menu.active .burger-line:last-child {
+    opacity: 0;
+}
+
+.toggle-menu.active .burger-line:first-child {
+    -webkit-transform: rotate(45deg) translate(4px, 4px);
+    transform: rotate(45deg) translate(4px, 4px);
+}
+
+.toggle-menu.active .burger-line:nth-child(2) {
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
 .intro-header>p {
     padding: 15px 45px;
     font-size: 1.6rem;
+}
+
+.show-sidebar {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+}
+
+.hide-sidebar {
+    -webkit-transform: translateX(-300px);
+    transform: translateX(-300px);
+}
+
+.expand-main {
+    margin-left: 0;
+}
+
+.contract-main {
+    margin-left: 300px;
+}
+
+.inactive-main {
+    opacity: 0.2;
 }
 
 #sidebar-menu {
@@ -245,10 +308,6 @@ main {
     animation: fadeIn .2s;
 }
 
-.hide {
-    display: none;
-}
-
 .modal-header {
     display: flex;
     justify-content: space-between;
@@ -322,6 +381,29 @@ main {
     border-radius: 3px;
     transition: .3s;
 }
+
+/* MODAL TO DELETE A PROJECT */
+.deletion-modal-header {
+    background: linear-gradient(90deg, red 0%, #e9322E 100%);
+}
+
+.project-deletion-title, .task-deletion-title {
+    font-weight: 700;
+}
+
+.cancel-deletion:hover {
+    color: whitesmoke;
+    border: 1px solid whitesmoke;
+}
+
+.confirm-deletion {
+    background-color: #e9322E;
+}
+
+.confirm-deletion:hover {
+    background-color: red;
+}
+  
 
 .project-icons {
     display: grid;
