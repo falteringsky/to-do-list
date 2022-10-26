@@ -341,10 +341,10 @@ const dom = (() => {
         taskText.setAttribute('data-project-index', i);
         taskText.setAttribute('data-task-index', j);
 
-        // Tasks information class
+        // Tasks information class for css format
         taskInfo.classList.add('flex');
 
-        // Tasks due date show from existing
+        // Tasks due date show from existing task
         taskDate.classList.add('due-date', 'padding-right');
         if (projects.projectsList[i].tasks[j].date !== undefined) {
           taskDate.textContent = projects.projectsList[i].tasks[j].date;
@@ -354,7 +354,7 @@ const dom = (() => {
           taskDate.textContent = '';
         }
 
-        // TASK EDIT ICON
+        // Task edit button on right
         taskEditIcon.classList.add(
           'fal',
           'fa-edit',
@@ -366,7 +366,7 @@ const dom = (() => {
         taskEditIcon.setAttribute('data-project-index', i);
         taskEditIcon.setAttribute('data-task-index', j);
 
-        // TASK DELETE ICON
+        // Task delete button on right
         taskTrashIcon.classList.add(
           'fal',
           'fa-trash-alt',
@@ -378,7 +378,7 @@ const dom = (() => {
         taskTrashIcon.setAttribute('data-project-index', i);
         taskTrashIcon.setAttribute('data-task-index', j);
 
-        // TASK INFO ICON
+        // Task expand info button on right
         taskInfoIcon.classList.add(
           'fal',
           'task-icon',
@@ -388,7 +388,7 @@ const dom = (() => {
         taskInfoIcon.setAttribute('data-project-index', i);
         taskInfoIcon.setAttribute('data-task-index', j);
 
-        // APPENDS
+        //Tasks lists append and childs
         taskIconAndTextDiv.appendChild(taskIcon);
         taskIconAndTextDiv.appendChild(taskText);
         taskInfo.appendChild(taskDate);
@@ -399,7 +399,7 @@ const dom = (() => {
         taskDiv.appendChild(taskInfo);
         tasksList.appendChild(taskDiv);
 
-        // TASK COMPLETION
+        // If task is marked complete 'true' on projectlist, add class taskdone to linethrough task
         if (projects.projectsList[i].tasks[j].completed === false) {
           taskText.classList.remove('task-done-text');
           taskIcon.classList.add(
@@ -407,7 +407,9 @@ const dom = (() => {
             'fa-circle',
             'padding-right'
           );
-        } else {
+        } 
+        
+        else {
           taskText.classList.add('task-done-text');
           taskIcon.classList.add(
             'fal',
@@ -417,34 +419,39 @@ const dom = (() => {
         }
       }
     }
+    //Close modal
     manipulateModal('close');
   }
 
+  //Get existing tasks from projects, create tasks and show them
   function getTasks(menuTitle, projectIndex) {
     let projectIndexStart;
     let projectIndexEnd;
 
-    // SAVE PROJECTS WITH TASKS TO LOCAL STORAGE
+    // Save projects on list to local storage
     localStorage.setItem('projects', JSON.stringify(projects.projectsList));
 
-    // IF CLICKED ON PROJECT LINK
+    // If clicking in a specific project off the project list link
     if (menuTitle === 'project') {
       projectIndexStart = projectIndex;
       projectIndexEnd = projectIndex + 1;
 
-      // IF PROJECT DOESN'T HAVE ANY TASKS
+      // If project doesn't have any tasks
       if (projects.projectsList[projectIndex].tasks.length === 0) {
         tasksCount.textContent = 0;
       }
+    }
 
-      // IF CLICKED ON MENU LINK
-    } else {
+    // If clicking in a specific menu link off such as 'today' etc
+    else {
       projectIndexStart = 0;
       projectIndexEnd = projects.projectsList.length;
     }
+
     showTasks(menuTitle, projectIndexStart, projectIndexEnd);
   }
 
+  //Menu and project links
   function selectLink(target, index, action) {
     const allLinks = document.querySelectorAll('.link');
     const allProjectsLinks = document.querySelectorAll('.project-link');
@@ -456,29 +463,29 @@ const dom = (() => {
       link.classList.remove('selected-link');
     });
 
-    // IF CLICKED DIRECTLY ON LINK (BOTH - MENU OR PROJECT)
+    // When clicking in any link, menu or project, add class
     if (target.classList.contains('link')) {
       target.classList.add('selected-link');
 
-      // IF WAS CLICKED TO EDIT PROJECT LINK
+      // If haven't clicked on menu or project link but press edit button on projects link
       if (action === 'edit') {
         allProjectsLinks[index].classList.add('selected-link'); // Keep project visually selected after editing
       }
-
-      // IF CLICKED ON MENU LINK ICON OR TEXT
-    } else if (
-      target.classList.contains('menu-link-icon') ||
-      target.classList.contains('menu-link-text')
-    ) {
+    } 
+     
+    // If clicking on tet or icon button of menu link
+    else if (target.classList.contains('menu-link-icon') || target.classList.contains('menu-link-text')) {
       target.parentElement.classList.add('selected-link');
     }
 
-    // IF CLICKED SOMEWHERE ON PROJECT LINK
+    // If clicking on projects link
     if (target.classList.contains('project')) {
       addTaskButton.classList.remove('hide'); // Show button to add task for selected project
+      
+      //Get tasks and populate them
       getTasks('project', index);
 
-      // IF CLICKED ON PROJECT ICON OR TEXT OR EDIT/DELETE ICONS
+      // If clicking on any of the text, button or delete on project link
       if (
         target.classList.contains('project-icon') ||
         target.classList.contains('project-text') ||
@@ -486,26 +493,21 @@ const dom = (() => {
         target.classList.contains('delete-project')
       ) {
         target.parentElement.parentElement.classList.add('selected-link');
-
-        // IF CLICKED ON PROJECT ELEMENTS DIVS
-      } else if (
-        target.classList.contains('project-icon-and-text-div') ||
-        target.classList.contains('project-default-icons-div')
-      ) {
+      } 
+      
+      // If clicking on any other place within the project link selected
+      else if (target.classList.contains('project-icon-and-text-div') || target.classList.contains('project-default-icons-div')) {
         target.parentElement.classList.add('selected-link');
       }
     }
 
-    // IF CLICKED SOMEWHERE ON MENU LINK
-    if (
-      target.classList.contains('menu-link') ||
-      target.classList.contains('menu-link-icon') ||
-      target.classList.contains('menu-link-text')
-    ) {
+    // If licking any menu link, get and show tasks for that menu
+    if(target.classList.contains('menu-link') || target.classList.contains('menu-link-icon') || target.classList.contains('menu-link-text')) {
       getTasks(menuTitle);
     }
   }
 
+  //Modal control when pressing add, edit, delete 
   function validateModal(modalAction, projectIndex, taskIndex, clickedLink) {
     const { projectFormIcon } = document.forms.form;
     const projectDomIcon = projectFormIcon.value;
