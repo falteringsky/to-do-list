@@ -639,7 +639,7 @@ const dom = (() => {
       const projectEditIcon = document.createElement('i');
       const projectTrashIcon = document.createElement('i');
 
-      //Prokect icon and text classes
+      //Project icon and text classes
       projectIconAndTextDiv.classList.add(
         'project-icon-and-text-div',
         'project',
