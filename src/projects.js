@@ -1,4 +1,4 @@
-import dom from './dom';
+import dom from './control';
 
 const projects = (() => {
   let projectsList = [];
