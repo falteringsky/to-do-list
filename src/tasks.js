@@ -1,5 +1,5 @@
 import projects from './projects';
-import dom from './control';
+import control from './control';
 
 const tasks = (() => {
   class Task {
@@ -18,7 +18,7 @@ const tasks = (() => {
         const task = new Task(title, description, date, priority, projectIndex, taskIndex);
     
         projects.projectsList[projectIndex].tasks.push(task);
-        dom.getTasks('project', projectIndex);
+        control.getTasks('project', projectIndex);
       }
     
       function editTask(title, description, date, priority, projectIndex, taskIndex) {
@@ -26,13 +26,13 @@ const tasks = (() => {
         projects.projectsList[projectIndex].tasks[taskIndex].description = description;
         projects.projectsList[projectIndex].tasks[taskIndex].date = date;
         projects.projectsList[projectIndex].tasks[taskIndex].priority = priority;
-        dom.getTasks('project', projectIndex);
+        control.getTasks('project', projectIndex);
       }
     
       function deleteTask(projectIndex, taskIndex) {
         if (projectIndex > -1) {
           projects.projectsList[projectIndex].tasks.splice(taskIndex, 1);
-          dom.getTasks('all');
+          control.getTasks('all');
         }
       }
     
@@ -52,7 +52,7 @@ const tasks = (() => {
         else {
           clickedLink = selectedLink.getAttribute('data-title');
         }
-        dom.getTasks(clickedLink, projectIndex);
+        control.getTasks(clickedLink, projectIndex);
       }
     
       return {addTask, editTask, deleteTask, toggleTaskCompletion};

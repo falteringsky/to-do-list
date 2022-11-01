@@ -2,7 +2,7 @@ import { format, parseISO, differenceInDays } from 'date-fns';
 import projects from './projects';
 import tasks from './tasks';
 
-const dom = (() => {
+const control = (() => {
   const toggleMenuIcon = document.querySelector('.toggle-btn');
   const sidebarMenu = document.querySelector('#sidebar-menu');
   const modal = document.querySelector('#modal');
@@ -725,4 +725,4 @@ const dom = (() => {
   };
 })();
 
-export default dom;
+export default control;

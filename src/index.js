@@ -1,15 +1,15 @@
-import dom from './control';
+import control from './control';
 import events from './events';
 
 // When opening app, menu link all is loaded and shown
-dom.showMainTitle(0);
+control.showMainTitle(0);
 
 // When opening app, show default projects and saved on local
-dom.showProjects();
+control.showProjects();
 
 // WHen opneing, app load and show tasks for projects
-dom.getTasks('all');
+control.getTasks('all');
 
-dom.responsiveMenu();
+control.responsiveMenu();
 events.resizeWindow();
 events.listenClicks();

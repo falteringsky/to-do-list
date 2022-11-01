@@ -1,4 +1,4 @@
-import dom from './control';
+import control from './control';
 
 const projects = (() => {
   let projectsList = [];
@@ -40,21 +40,21 @@ const projects = (() => {
   function addProject(icon, title) {
     const project = new Project(icon, title);
     projectsList.push(project);
-    dom.showProjects();
+    control.showProjects();
   }
 
   function editProject(icon, title, index, link) {
     projectsList[index].icon = icon;
     projectsList[index].title = title;
-    dom.showProjects();
-    dom.selectLink(link, index, 'edit');
+    control.showProjects();
+    control.selectLink(link, index, 'edit');
   }
 
   function deleteProject(index) {
     if (index > -1) {
       projectsList.splice(index, 1);
     }
-    dom.showProjects();
+    control.showProjects();
   }
 
   return {

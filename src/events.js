@@ -1,10 +1,10 @@
-import dom from './control';
+import control from './control';
 import tasks from './tasks';
 
-const handlers = (() => {
+const events = (() => {
   // Resize window for responsiveness 
   function resizeWindow() {
-    window.addEventListener('resize', dom.responsiveMenu);
+    window.addEventListener('resize', control.responsiveMenu);
   }
 
   function listenClicks() {
@@ -20,18 +20,18 @@ const handlers = (() => {
 
       // If on mobile or small screen and clicking toggled button, open/close it
       if (target.classList.contains('toggle-menu') || target.classList.contains('three-line')) {
-        dom.toggleMenu();
+        control.toggleMenu();
       }
 
       // If clicking a link, show tasks and change menu title
       if (target.classList.contains('select')) {
-        dom.selectLink(target, linkIndex);
-        dom.changeMainTitle(target, linkIndex); // In the main content show title according to selected link title
+        control.selectLink(target, linkIndex);
+        control.changeMainTitle(target, linkIndex); // In the main content show title according to selected link title
       }
 
       // If clicking add project (+)
       if (target.classList.contains('add-project')) {
-        dom.manipulateModal('show', 'Add Project', 'Add');
+        control.manipulateModal('show', 'Add Project', 'Add');
       }
 
       // If clicking edit or delete icon on project menu, open modal
@@ -40,11 +40,11 @@ const handlers = (() => {
 
         // Open modal to edit the project
         if (target.classList.contains('edit-project')) {
-        dom.manipulateModal('show', 'Edit Project', 'Edit', projectIndex);
+        control.manipulateModal('show', 'Edit Project', 'Edit', projectIndex);
         } 
         //Open modal to delete project
         else if (target.classList.contains('delete-project')) {
-          dom.manipulateModal('show', 'Delete Project', 'Delete', projectIndex);
+          control.manipulateModal('show', 'Delete Project', 'Delete', projectIndex);
         }
       }
 
@@ -55,19 +55,19 @@ const handlers = (() => {
 
         //Open modal for adding new task
         if (target.classList.contains('add-task')) {
-          dom.manipulateModal('show', 'Add Task', 'Add')
+          control.manipulateModal('show', 'Add Task', 'Add')
         }
         //Open modal for editing a task 
         else if (target.classList.contains('edit-task')) {
-          dom.manipulateModal('show', 'Edit Task', 'Edit', projectIndex, taskIndex);
+          control.manipulateModal('show', 'Edit Task', 'Edit', projectIndex, taskIndex);
         }
         //Open modal for deleting a task 
         else if (target.classList.contains('delete-task')) {
-          dom.manipulateModal('show', 'Delete Task', 'Delete', projectIndex, taskIndex);
+          control.manipulateModal('show', 'Delete Task', 'Delete', projectIndex, taskIndex);
         } 
         //Open modal for expanding info task
         else if (target.classList.contains('fa-info-circle')) {
-          dom.manipulateModal('show', 'Task Info', '', projectIndex, taskIndex);
+          control.manipulateModal('show', 'Task Info', '', projectIndex, taskIndex);
         }
       }
 
@@ -77,7 +77,7 @@ const handlers = (() => {
         //When pressing adding button on modal
         if (target.textContent === 'Add') {
           projectIndex = parseInt(selectedLink.getAttribute('data-link-index'), 10);
-          dom.validateModal('add', projectIndex, '', selectedLink);
+          control.validateModal('add', projectIndex, '', selectedLink);
         } 
         
         //When pressing editing button on modal
@@ -85,11 +85,11 @@ const handlers = (() => {
 
           // For editing a project
           if (modalMainTitle.textContent === 'Edit Project') {
-            dom.validateModal('edit', projectIndex, '', selectedLink);
+            control.validateModal('edit', projectIndex, '', selectedLink);
           } 
           // For editing a task
           else if (modalMainTitle.textContent === 'Edit Task') {
-            dom.validateModal('edit', projectIndex, taskIndex, selectedLink);
+            control.validateModal('edit', projectIndex, taskIndex, selectedLink);
           }
         } 
         
@@ -100,21 +100,21 @@ const handlers = (() => {
           //If project text 'are you sure' is not hidden
           if (!projectDeletionText.classList.contains('hide')) {
             projectIndex = parseInt(selectedLink.getAttribute('data-link-index'), 10);
-            dom.validateModal('delete', projectIndex, '', selectedLink);
-            dom.changeMainTitle(target, 0); // After deleting a project - change icon to 'fa-calendar-alt' (menu link 'All')
-            dom.showMainTitle(0); // After deleting a project - show main title as 'All'
-            dom.getTasks('all'); // After deleting a project - show all tasks from all remaining projects
+            control.validateModal('delete', projectIndex, '', selectedLink);
+            control.changeMainTitle(target, 0); // After deleting a project - change icon to 'fa-calendar-alt' (menu link 'All')
+            control.showMainTitle(0); // After deleting a project - show main title as 'All'
+            control.getTasks('all'); // After deleting a project - show all tasks from all remaining projects
           } 
           //If project text 'are you sure' is hidden
           else if (projectDeletionText.classList.contains('hide')) {
-            dom.validateModal('delete', projectIndex, taskIndex, selectedLink);
+            control.validateModal('delete', projectIndex, taskIndex, selectedLink);
           }
         }
       }
 
       //Closing modal
       if (target.classList.contains('close')) {
-        dom.manipulateModal('close');
+        control.manipulateModal('close');
       }
 
       //Clicking to mark task as complete
@@ -136,4 +136,4 @@ const handlers = (() => {
   };
 })();
 
-export default handlers;
+export default events;
