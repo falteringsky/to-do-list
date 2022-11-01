@@ -9,7 +9,7 @@ const control = (() => {
   const form = modal.querySelector('#form');
   const modalTitle = modal.querySelector('#modal-title');
   const modalTitleError = modal.querySelector('.modal-title-error');
-  const mainContent = document.querySelector('#main');
+  const mainContent = document.querySelector('#main-content');
   const mainTitleIcon = document.querySelector('.main-title-icon');
   const mainTitleText = document.querySelector('.main-title-text');
   const projectsLinksDiv = document.querySelector('.projects-links-div');
@@ -259,7 +259,7 @@ const control = (() => {
 
   //Generation of Tasks created and then shown
   function showTasks(menuTitle, projectIndexStart, projectIndexEnd) {
-    const todayDate = format(new Date(), 'MM-DD-YYYY');
+    const todayDate = format(new Date(), 'MM-dd-yyyy');
     let tasksNumber = 0;
 
     tasksCount.textContent = 0;
