@@ -30,10 +30,9 @@ const control = (() => {
       sidebarMenu.classList.add('hide-sidebar');
       sidebarMenu.classList.add('add-z-index');
 
-      // When sidebar hides, expand menu
+      // When sidebar hides, expand taks main content
       mainContent.classList.remove('contract-main');
       mainContent.classList.add('expand-main');
-
     } 
     
     else {
