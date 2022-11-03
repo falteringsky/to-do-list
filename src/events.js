@@ -19,7 +19,7 @@ const events = (() => {
       const linkIndex = parseInt(target.getAttribute('data-link-index'), 10);
 
       // If on mobile or small screen and clicking toggled button, open/close it
-      if (target.classList.contains('toggle-menu') || target.classList.contains('three-line')) {
+      if (target.classList.contains('toggle-btn') || target.classList.contains('three-line')) {
         control.toggleMenu();
       }
 
