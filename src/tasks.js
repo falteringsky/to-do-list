@@ -50,7 +50,7 @@ const tasks = (() => {
           clickedLink = 'project';
         } 
         else {
-          clickedLink = selectedLink.getAttribute('data-title');
+          clickedLink = selectedLink.getAttribute('data-link-title');
         }
         control.getTasks(clickedLink, projectIndex);
       }
