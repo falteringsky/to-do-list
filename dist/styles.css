@@ -132,6 +132,7 @@ header {
 
 .link, .project-link {
     display: flex;
+    justify-content: space-between;
     margin-bottom: 15px;
     padding: 12px 20px;
     background-color: #444a4d;
@@ -183,7 +184,7 @@ header {
 }
 
 /*Main*/
-main {
+main, body {
     background-color: #333333;
 }
 
@@ -333,7 +334,27 @@ main {
 
 .default-tasks-icons i {
     font-size: 17px;
-  }
+}
+
+/*Footer section*/
+.content {
+    flex-grow: 1;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.footer-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    color: black;
+    background: linear-gradient(90deg, white 0%, darkgray 100%);;
+}
 
 /*Modal*/
 #modal {
