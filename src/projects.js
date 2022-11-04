@@ -13,7 +13,7 @@ const projects = (() => {
           {
             title: 'The Big Test',
             description: 'Test descrption. 2008, the year where all assets dropped to the floor :(',
-            date: '08-08-2008',
+            date: '2008-08-08',
             priority: 'low',
             projectIndex: 0,
             taskIndex: 0,
