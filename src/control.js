@@ -72,6 +72,14 @@ const control = (() => {
   function showMainTitle(index) {
     const menuTexts = document.querySelectorAll('.menu-link-text');
 
+    mainTitleIcon.classList.add(
+      'fal',
+      'fa-fw',
+      'main-title-icon',
+      'padding-right',
+      // menuIcon
+    );
+
     mainTitleText.textContent = menuTexts[index].textContent;
     // document.title = `ToDo - ${mainTitleText.textContent}`;
   }
@@ -258,7 +266,7 @@ const control = (() => {
 
   //Generation of Tasks created and then shown
   function showTasks(menuTitle, projectIndexStart, projectIndexEnd) {
-    const todayDate = format(new Date(), 'MM-dd-yyyy');
+    const todayDate = format(new Date(), 'yyyy-MM-dd');
     let tasksNumber = 0;
 
     tasksCount.textContent = 0;
@@ -454,7 +462,7 @@ const control = (() => {
   function selectLink(target, index, action) {
     const allLinks = document.querySelectorAll('.link');
     const allProjectsLinks = document.querySelectorAll('.project-link');
-    const menuTitle = target.getAttribute('data-title');
+    const menuTitle = target.getAttribute('data-link-title');
 
     addTaskButton.classList.add('hide'); // By default 'Add Task' button is hidden
 
@@ -472,8 +480,8 @@ const control = (() => {
       }
     } 
      
-    // If clicking on tet or icon button of menu link
-    else if (target.classList.contains('menu-link-icon') || target.classList.contains('menu-link-text')) {
+    // If clicking on tet or icon button of menu link target.classList.contains('menu-link-icon') ||
+    else if ( target.classList.contains('menu-link-text')) {
       target.parentElement.classList.add('selected-link');
     }
 
@@ -500,8 +508,8 @@ const control = (() => {
       }
     }
 
-    // If licking any menu link, get and show tasks for that menu
-    if(target.classList.contains('menu-link') || target.classList.contains('menu-link-icon') || target.classList.contains('menu-link-text')) {
+    // If licking any menu link, get and show tasks for that menu target.classList.contains('menu-link-icon') ||
+    if(target.classList.contains('menu-link') || target.classList.contains('menu-link-text')) {
       getTasks(menuTitle);
     }
   }
@@ -584,7 +592,7 @@ const control = (() => {
 
       // If task is being deleted or edited from menu link 'today' etc selected
       if (clickedLink.classList.contains('menu-link')) {
-        menuTitle = clickedLink.getAttribute('data-title');
+        menuTitle = clickedLink.getAttribute('data-link-title');
       }
       // If task is being deleted or edited from project link selected
       else if (clickedLink.classList.contains('project-link')) {
